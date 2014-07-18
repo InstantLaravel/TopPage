@@ -10,7 +10,7 @@ Laravel4.2とGumbyより作成されています。主なロジックはroutes.p
 
 1. `git clone https://github.com/InstantLaravel/TopPage.git 対象ディレクトリー名`に続き、`composer install`を実行してください。
 
-2. app/config/session.phpの'domain'に、使用する（サブドメインではなく）ドメイン名を指定します。認証をこのトップページで行わず、エディター(Codiad)の機能をそのまま利用する場合は、サブドメイン名でもかまいません。
+2. app/config/session.phpの'domain'に、使用する（サブドメインではなく）ドメイン名を指定します。認証をこのトップページで行わず、エディター(Codiad)の機能をそのまま利用する場合は、サブドメイン名を指定してもかまいません。
 
 3. app/routes.phpの'http://***EDITOR-DOMAIN***'をエディター（Codiad）を起動するドメイン名に変更してください。
 
