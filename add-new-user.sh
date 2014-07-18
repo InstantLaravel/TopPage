@@ -58,7 +58,7 @@ ln -s /etc/nginx/sites-available/$1 /etc/nginx/sites-enabled
 
 # PHP-FPMプール作成
 cat <<EOT > /etc/php5/fpm/pool.d/$1.conf
-[base]
+[$1]
 user = $1
 group = $1
 listen = /var/run/php5-fpm.$1.sock

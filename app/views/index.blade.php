@@ -38,7 +38,7 @@
         @endif
         @if ($errors->has('username'))
         <div class="row">
-            <li class="primary alert">{{ $errors->first( 'username' ) }}'</li>
+            <li class="primary alert">{{ $errors->first( 'username' ) }}</li>
         </div>
         @endif
         <div class="row">
@@ -55,7 +55,7 @@
     <div class="centered nine columns">
         @if ($errors->has('password'))
         <div class="row">
-            <li class="primary alert">{{ $errors->first( 'password' ) }}'</li>
+            <li class="primary alert">{{ $errors->first( 'password' ) }}</li>
         </div>
         @endif
         <div class="row">
