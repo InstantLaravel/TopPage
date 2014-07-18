@@ -12,11 +12,11 @@ echo "umask 002" >> /home/$1/.profile
 cp -R /home/codiad/workspace/base /home/codiad/workspace/$1
 
 # ファイル所有者変更
-chmod -R $1:codiad /home/codiad/workspace/$1
+chown -R $1:codiad /home/codiad/workspace/$1
 
 # パーミッション変更
-find /home/codiad/workspace/$1 -type d -exec sudo chmod 2775 {}
-find /home/codiad/workspace/$1 -type f -exec sudo chmod 0664 {}
+find /home/codiad/workspace/$1 -type d -exec sudo chmod 2775 {} +
+find /home/codiad/workspace/$1 -type f -exec sudo chmod 0664 {} +
 
 # 仮想ホスト作成
 baseDomain='*** Base Domain Name ***';
