@@ -1,6 +1,6 @@
 .directory
 /bootstrap/compiled.php
-_ide_helper.php
+/_ide_helper.php
 /vendor
-composer.lock
+/composer.lock
 /nbproject

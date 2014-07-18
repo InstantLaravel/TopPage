@@ -19,14 +19,14 @@ find /home/codiad/workspace/$1 -type d -exec sudo chmod 2775 {} +
 find /home/codiad/workspace/$1 -type f -exec sudo chmod 0664 {} +
 
 # 仮想ホスト作成
-baseDomain='*** Base Domain Name ***';
-docRoot='*** Doc Root ***';
+baseDomain='<<< Base Domain Name >>>';
+docRoot='<<< Doc Root >>>';
 cat <<EOT > /etc/nginx/sites-available/$1
 server {
         listen 80;
         server_name $1.${baseDomain};
 
-        root /home/codiad/workspace/base/${docRoot};
+        root /home/codiad/workspace/$1/${docRoot};
 
         index index.html index.php;
 
@@ -54,6 +54,7 @@ server {
         sendfile off;
 }
 EOT
+ln -s /etc/nginx/sites-available/$1 /etc/nginx/sites-enabled
 
 # PHP-FPMプール作成
 cat <<EOT > /etc/php5/fpm/pool.d/$1.conf
