@@ -10,7 +10,7 @@
   | そしてそのURIに対応する実行コードをクロージャーで指定します。
   |
  */
-Route::get( 'api-to-get-user-name/{token}', function($token)
+Route::get( 'api-to-get-login-user-name/{token}', function($token)
 {
     if($token == "")
     {
@@ -50,7 +50,7 @@ Route::post( '/',[ 'before' => 'csrf',
                 ->withErrors( $val );
     }
 
-    // LaravelのalphaバリデーションはUTF8のアルファベットでも通過する
+    // LaravelのalphaバリデーションはUTF8のアルファベットでも通過するため
     // ASCIIへ変換
     $inputs['username'] = mb_convert_encoding( $inputs['username'], 'ASCII', 'UTF-8' );
 
@@ -71,10 +71,14 @@ Route::post( '/',[ 'before' => 'csrf',
     // ユーザー名が存在しない場合
     $user = User::create( $inputs );
 
-    // workspaceディレクトリー中のbaseを新規ユーザーのためにコピー
-    $workspaceDir = '/home/codiad/workspace';
-    umask(002);
-    File::copyDirectory($workspaceDir.'/base', $workspaceDir.'/'.$inputs['username']);
+    // 外部シェルでLinux上にユーザー作成
+    //  1. 指定されたユーザーを作成する
+    //  2. そのユーザーの.profileにumask 002を追加する
+    //  3. Codiadワークスペース上のbaseをコピー
+    //  4. コピーしたディレクトリーのオーナーを新しいユーザーへ変更
+    //  5. パーミッションをファイル644、ディレクトリー755に変更
+    $command = '/home/home/top/add-new-user.sh '.$inputs['username'];
+    exec( $command );
 
     // Codiadユーザー追加
     $data = [
@@ -94,7 +98,7 @@ Route::post( '/',[ 'before' => 'csrf',
     $records[] = $data;
     putCodiadData( '/home/codiad/data/projects.php', $records );
 
-    // ACL情報追加
+    // Codiad ACL情報追加
     // このファイルを持っているユーザーがCodiadでは非管理者になる
     $data = [
         $inputs['username']
