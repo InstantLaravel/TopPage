@@ -19,20 +19,18 @@ find /home/codiad/workspace/$1 -type d -exec sudo chmod 2775 {} +
 find /home/codiad/workspace/$1 -type f -exec sudo chmod 0664 {} +
 
 # ユーザーのサブディレクトリー定義追加
-baseDomain='<<< Base Domain Name >>>'
-docRoot='<<< Doc Root >>>'
 cat <<EOT > /etc/nginx/users.d/$1
     location ~ ^/$1(/(.+))?$ {
         root /home/codiad/workspace/$1/public;
 
-        try_files \$1 /blog/index.php?\$query_string;
+        try_files \$1 /$1/index.php?\$query_string;
 
-        location ~ ^/blog/index.php$ {
+        location ~ ^/$1/index.php$ {
             include fastcgi_params;
             # パラメーターをオーバーライト
             fastcgi_param SCRIPT_FILENAME /home/codiad/workspace/$1/public/index.php;
             fastcgi_split_path_info ^(.+\\.php)(.+)$;
-            fastcgi_pass unix:/var/run/php5-fpm.sock;
+            fastcgi_pass unix:/var/run/php5-fpm.$1.sock;
             fastcgi_index index.php;
         }
     }
@@ -46,7 +44,7 @@ group = $1
 listen = /var/run/php5-fpm.$1.sock
 listen.owner = $1
 listen.group = $1
-listen.mode = 0666
+listen.mode = 0660
 pm = dynamic
 pm.max_children = 5
 pm.start_servers = 2
