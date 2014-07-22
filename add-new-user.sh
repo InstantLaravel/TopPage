@@ -18,43 +18,25 @@ chown -R $1:codiad /home/codiad/workspace/$1
 find /home/codiad/workspace/$1 -type d -exec sudo chmod 2775 {} +
 find /home/codiad/workspace/$1 -type f -exec sudo chmod 0664 {} +
 
-# 仮想ホスト作成
-baseDomain='<<< Base Domain Name >>>';
-docRoot='<<< Doc Root >>>';
-cat <<EOT > /etc/nginx/sites-available/$1
-server {
-        listen 80;
-        server_name $1.${baseDomain};
+# ユーザーのサブディレクトリー定義追加
+baseDomain='<<< Base Domain Name >>>'
+docRoot='<<< Doc Root >>>'
+cat <<EOT > /etc/nginx/users.d/$1
+    location ~ ^/$1(/(.+))?$ {
+        root /home/codiad/workspace/$1/public;
 
-        root /home/codiad/workspace/$1/${docRoot};
+        try_files \$1 /blog/index.php?\$query_string;
 
-        index index.html index.php;
-
-        location ~ / {
-                try_files \$uri \$uri/ /index.php?\$query_string;
-                location ~ \\.php$ {
-                        include fastcgi_params;
-                        # SCRIPT_FILENAMEをオーバーライト
-                        fastcgi_param SCRIPT_FILENAME  \$document_root\$fastcgi_script_name;
-                        fastcgi_split_path_info ^(.+\\.php)(/.+)$;
-                        fastcgi_pass unix:/var/run/php5-fpm.$1.sock;
-                        fastcgi_index index.php;
-                }
+        location ~ ^/blog/index.php$ {
+            include fastcgi_params;
+            # パラメーターをオーバーライト
+            fastcgi_param SCRIPT_FILENAME /home/codiad/workspace/$1/public/index.php;
+            fastcgi_split_path_info ^(.+\\.php)(.+)$;
+            fastcgi_pass unix:/var/run/php5-fpm.sock;
+            fastcgi_index index.php;
         }
-
-        location = favicon.ico { access_log off; log_not_found off; }
-        location = robots.txt { access_log off; log_not_found off; }
-
-        access_log off;
-        error_log /var/log/nginx/error.log error;
-#       rewrite_log on;
-
-        error_page 404 /index.php;
-
-        sendfile off;
-}
+    }
 EOT
-ln -s /etc/nginx/sites-available/$1 /etc/nginx/sites-enabled
 
 # PHP-FPMプール作成
 cat <<EOT > /etc/php5/fpm/pool.d/$1.conf
@@ -75,5 +57,5 @@ php_admin_value[disable_functions] = dl,exec,passthru,shell_exec,system,proc_ope
 EOT
 
 # Nginx、php5-fpm再起動
-service nginx restart
-service php5-fpm restart
+service nginx force-reload
+service php5-fpm force-reload
