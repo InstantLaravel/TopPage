@@ -40,7 +40,7 @@ EOT
 cat <<EOT > /etc/php5/fpm/pool.d/$1.conf
 [$1]
 user = $1
-group = $1
+group = www-data
 listen = /var/run/php5-fpm.$1.sock
 listen.owner = $1
 listen.group = $1
@@ -56,4 +56,5 @@ EOT
 
 # Nginx、php5-fpm再起動
 service nginx force-reload
-service php5-fpm force-reload
+service php5-fpm stop
+service php5-fpm start
