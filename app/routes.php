@@ -77,7 +77,7 @@ Route::post( '/',[ 'before' => 'csrf',
     //  3. Codiadワークスペース上のbaseをコピー
     //  4. コピーしたディレクトリーのオーナーを新しいユーザーへ変更
     //  5. パーミッションをファイル644、ディレクトリー755に変更
-    $command = '/home/home/top/add-new-user.sh '.$inputs['username'];
+    $command = 'sudo /home/home/top/add-new-user.sh '.$inputs['username'];
     exec( $command );
 
     // Codiadユーザー追加

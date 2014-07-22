@@ -40,10 +40,10 @@ EOT
 cat <<EOT > /etc/php5/fpm/pool.d/$1.conf
 [$1]
 user = $1
-group = www-data
+group = $1
 listen = /var/run/php5-fpm.$1.sock
 listen.owner = $1
-listen.group = $1
+listen.group = www-data
 listen.mode = 0660
 pm = dynamic
 pm.max_children = 5
