@@ -55,6 +55,6 @@ php_admin_value[disable_functions] = dl,exec,passthru,shell_exec,system,proc_ope
 EOT
 
 # Nginx、php5-fpm再起動
-service nginx force-reload
-service php5-fpm stop
-service php5-fpm start
+/usr/sbin/service nginx force-reload
+/usr/sbin/service php5-fpm stop
+/usr/sbin/service php5-fpm start
