@@ -54,7 +54,5 @@ chdir = /
 php_admin_value[disable_functions] = dl,exec,passthru,shell_exec,system,proc_open,popen,curl_exec,curl_multi_exec,parse_ini_file,show_source
 EOT
 
-# Nginx、php5-fpm再起動
-/usr/sbin/service nginx force-reload
-/usr/sbin/service php5-fpm stop
-/usr/sbin/service php5-fpm start
+# Nginx、php5-fpm再起動要求
+touch /home/home/restart-required
