@@ -10,9 +10,9 @@
   | そしてそのURIに対応する実行コードをクロージャーで指定します。
   |
  */
-Route::get( 'api-to-get-login-user-name/{token}', function($token)
+Route::get( '*** API ROUTE FOR USER NAME ***/{token}', function($token)
 {
-    if($token == "")
+    if($token == "*** TOKEN FOR USER NAME ***")
     {
         return Response::make( '' );
     }
@@ -59,8 +59,7 @@ Route::post( '/',[ 'before' => 'csrf',
     {
         if( Auth::attempt( $inputs ) )
         {
-            return Redirect::to( 'http://editor.instant.com' );
-//            return Redirect::to('http://***EDITOR-DOMAIN***');
+            return Redirect::to('http://*** EDITOR DOMAIN ***');
         }
 
         return Redirect::to( '/#logform' )
@@ -111,8 +110,7 @@ Route::post( '/',[ 'before' => 'csrf',
     // ログイン
     Auth::login( $user );
 
-//    return Redirect::to('http://***EDITOR-DOMAIN***');
-    return Redirect::to( 'http://editor.instant.com' );
+    return Redirect::to('http://*** EDITOR DOMAIN ***');
 } ] );
 
 // Codiadの設定ファイルを読み込む
