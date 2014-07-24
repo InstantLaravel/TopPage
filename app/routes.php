@@ -19,7 +19,7 @@ Route::post( '/',[ 'before' => 'csrf',
              function()
 {
     $rule = [
-        'username' => [ 'required', 'max:50', 'alpha' ],
+        'username' => [ 'required', 'max:50', 'alpha', 'not_in:README,base,index.html,404.html' ],
         'password' => [ 'required', 'max:30' ],
     ];
 
