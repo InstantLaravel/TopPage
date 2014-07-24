@@ -10,22 +10,6 @@
   | そしてそのURIに対応する実行コードをクロージャーで指定します。
   |
  */
-Route::get( '*** API ROUTE FOR USER NAME ***/{token}', function($token)
-{
-    if($token == "*** TOKEN FOR USER NAME ***")
-    {
-        return Response::make( '' );
-    }
-
-    if( Auth::check() )
-    {
-        return Response::make( Auth::user()->username );
-    }
-
-    return Response::make( '' );
-} );
-
-
 Route::get( '/', function()
 {
     return View::make( 'index' );
