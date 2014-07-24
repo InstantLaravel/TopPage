@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('bootstrap-layout')
 
 @section('title')
 レイアウトサンプル
