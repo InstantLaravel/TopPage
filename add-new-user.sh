@@ -18,7 +18,7 @@ chown -R $1:codiad /home/codiad/workspace/$1
 find /home/codiad/workspace/$1 -type d -exec sudo chmod 2775 {} +
 find /home/codiad/workspace/$1 -type f -exec sudo chmod 0664 {} +
 
-# ユーザーのサブディレクトリー定義追加
+# ユーザーごとの実行結果表示用Nginx定義追加
 cat <<EOT > /etc/nginx/users.d/$1
     location ~ ^/$1(/(.+))?$ {
         root /home/codiad/workspace/$1/public;
