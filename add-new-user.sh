@@ -45,11 +45,16 @@ listen = /var/run/php5-fpm.$1.sock
 listen.owner = $1
 listen.group = www-data
 listen.mode = 0660
-pm = dynamic
-pm.max_children = 5
+# プロセス数を固定:static 動的に管理:dynamic アクセス時startの数だけプロセス起動:ondemand
+pm = ondemand
+# プロセス最大数 staticの場合はプロセス数
+pm.max_children = 2
+# 予め起動しておくプロセス数 ondemandの場合は初期起動数
 pm.start_servers = 2
+# アイドル状態時の最小プロセス数 dynamicの場合のみ
 pm.min_spare_servers = 1
-pm.max_spare_servers = 3
+# アイドル状態時の最大プロセス数 dynamicの場合のみ
+pm.max_spare_servers = 2
 chdir = /
 php_admin_value[disable_functions] = dl,exec,passthru,shell_exec,system,proc_open,popen,curl_exec,curl_multi_exec,parse_ini_file,show_source
 EOT
