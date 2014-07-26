@@ -1,20 +1,168 @@
-<body>
-    <h1>ユーザー名をＵＲIの先頭に付けてください。</h1>
-    <h3>例：ユーザー名がMyUserの場合</h3>
-    <p>http://*** PREVIEW DOMAIN ***/MyUser</p>
-    <hr>
-    <h3>特徴</h3>
-    <p>Bootstrapをpublicフォルダー下のcss、js、imgへインストールしてあります。</p>
-    <p>Bootstrapを使用したレイアウトをviewsフォルダー下に用意しています。sampleビューを参照すれば、Bladeエンジンの簡単な使用方法が理解できるでしょう。</p>
-    <h3>利用の制限</h3>
-    <h4>データベース</h4>
-    <p>使用できるDBはSQLiteのみです。ドライバーに'sqlite'を指定してください。</p>
-    <h4>禁止ファンクション</h4>
-    <p>以下のファンクションは使用できません。<p>
-    <p>pcntl_alarm,pcntl_fork,pcntl_waitpid,pcntl_wait,pcntl_wifexited,pcntl_wifstopped,pcntl_wifsignaled,pcntl_wexitstatus,<br>
-        pcntl_wtermsig,pcntl_wstopsig,pcntl_signal,pcntl_signal_dispatch,pcntl_get_last_error,pcntl_strerror,pcntl_sigprocmask,<br>
-        pcntl_sigwaitinfo,pcntl_sigtimedwait,pcntl_exec,pcntl_getpriority,pcntl_setpriority,dl,exec,passthru,shell_exec,system,<br>
-        proc_open,popen,curl_exec,curl_multi_exec,parse_ini_file,show_source</p>
-    <h4>PHP拡張</h4>
-    <p>チュートリアルで使用する拡張以外はインストールしていません。</p>
-</body>
+<!doctype html>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if IE 9]>    <html class="no-js ie9" lang="en"> <![endif]-->
+<!-- Consider adding an manifest.appcache: h5bp.com/d/Offline -->
+<!--[if gt IE 9]><!--> <html class="no-js" lang="en" itemscope itemtype="http://schema.org/Product"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+
+        <!-- Use the .htaccess and remove these lines to avoid edge case issues.
+                 More info: h5bp.com/b/378 -->
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+        <title>インスタントLaravelプレビュー</title>
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta name="author" content="humans.txt">
+
+        <link rel="shortcut icon" href="favicon.png" type="image/x-icon" />
+
+        <!-- Facebook Metadata /-->
+        <meta property="fb:page_id" content="" />
+        <meta property="og:image" content="" />
+        <meta property="og:description" content=""/>
+        <meta property="og:title" content=""/>
+
+        <!-- Google+ Metadata /-->
+        <meta itemprop="name" content="">
+        <meta itemprop="description" content="">
+        <meta itemprop="image" content="">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+        <!-- We highly recommend you use SASS and write your custom styles in sass/_custom.scss.
+             However, there is a blank style.css in the css directory should you prefer -->
+        <link rel="stylesheet" href="css/gumby.css">
+        <!-- <link rel="stylesheet" href="css/style.css"> -->
+
+        <script src="/js/libs/modernizr-2.6.2.min.js"></script>
+        <style>
+            h1.lead { border-bottom: 1px dotted #ccc; margin-bottom: 30px; }
+            h2.lead { border-bottom: 1px dotted #ccc; margin-bottom: 25px; }
+            h3.lead { border-bottom: 1px dotted #ccc; margin-bottom: 20px; }
+            h4.lead { border-bottom: 1px dotted #ccc; margin-bottom:10px; }
+            hr { border: none; border-top: dotted 1px #777; margin: 50px; }
+        </style>
+    </head>
+
+    <body>
+        <div class="row">
+            <h1 class="lead">インスタントLaravelプレビュー</h1>
+        </div>
+
+        <div class="row">
+            <li class="info alert"><i class="icon-attention"></i> 先頭に自分のユーザー名を付けたURIへアクセスしてください。</li>
+        </div>
+
+        <div class="row">
+            <h3>例：ユーザー名がMyUserの場合</h3>
+            <p class="push_one eleven columns">http://*** PREVIEW DOMAIN ***/MyUser</p>
+        </div>
+
+        <hr>
+
+        <div class="row">
+            <h3>特徴</h3>
+            <div class="push_one eleven columns">
+                <p>Laravelのデフォルトペジネーション（ページ操作）はBootstrapをベースとしているため、publicフォルダー下のcss、js、imgへインストールしてあります。</p>
+                <p>Bootstrapを使用したレイアウト（テンプレート）をviewsフォルダー下に用意しています。sample.blade.phpビューファイルを読んでいただけば、Bladeエンジンの簡単な使用方法の参照になるでしょう。</p>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="row">
+            <h3>利用の制限</h3>
+            <h4>データベース</h4>
+            <div class="push_one eleven columns">
+                <p>使用できるDBはSQLiteのみです。ドライバーに'sqlite'を指定してください。</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <h4>禁止ファンクション</h4>
+            <div class="push_one eleven columns">
+                <h5>以下のファンクションは使用できません。</h5>
+                <p>pcntl_alarm,pcntl_fork,pcntl_waitpid,pcntl_wait,pcntl_wifexited,pcntl_wifstopped,pcntl_wifsignaled,pcntl_wexitstatus,
+                    pcntl_wtermsig,pcntl_wstopsig,pcntl_signal,pcntl_signal_dispatch,pcntl_get_last_error,pcntl_strerror,pcntl_sigprocmask,
+                    pcntl_sigwaitinfo,pcntl_sigtimedwait,pcntl_exec,pcntl_getpriority,pcntl_setpriority,dl,exec,passthru,shell_exec,system,
+                    proc_open,popen,curl_exec,curl_multi_exec,parse_ini_file,show_source</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <h4>PHP拡張</h4>
+            <p class="push_one eleven columns">チュートリアルで使用する拡張以外はインストールしていません。</p>
+        </div>
+
+        <!-- Grab Google CDN's jQuery, fall back to local if offline -->
+        <!-- 2.0 for modern browsers, 1.10 for .oldie -->
+        <script>
+            var oldieCheck = Boolean(document.getElementsByTagName('html')[0].className.match(/\soldie\s/g));
+            if (!oldieCheck) {
+                document.write('<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"><\/script>');
+            } else {
+                document.write('<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"><\/script>');
+            }
+        </script>
+        <script>
+            if (!window.jQuery) {
+                if (!oldieCheck) {
+                    document.write('<script src="/js/libs/jquery-2.0.2.min.js"><\/script>');
+                } else {
+                    document.write('<script src="/js/libs/jquery-1.10.1.min.js"><\/script>');
+                }
+            }
+        </script>
+
+        <!--
+        Include gumby.js followed by UI modules followed by gumby.init.js
+        Or concatenate and minify into a single file -->
+        <script gumby-touch="/js/libs" src="/js/libs/gumby.min.js"></script>
+        <script src="/js/libs/gumby.init.js"></script>
+
+        <!--
+        Google's recommended deferred loading of JS
+        gumby.min.js contains gumby.js, all UI modules and gumby.init.js
+
+        Note: If you opt to use this method of defered loading,
+        ensure that any javascript essential to the initial
+        display of the page is included separately in a normal
+        script tag.
+
+        <script type="text/javascript">
+        function downloadJSAtOnload() {
+        var element = document.createElement("script");
+        element.src = "js/libs/gumby.min.js";
+        document.body.appendChild(element);
+        }
+        if (window.addEventListener)
+        window.addEventListener("load", downloadJSAtOnload, false);
+        else if (window.attachEvent)
+        window.attachEvent("onload", downloadJSAtOnload);
+        else window.onload = downloadJSAtOnload;
+        </script> -->
+
+        <script src="/js/plugins.js"></script>
+        <script src="/js/main.js"></script>
+
+        <!-- Change UA-XXXXX-X to be your site's ID -->
+        <!--<script>
+        window._gaq = [['_setAccount','UAXXXXXXXX1'],['_trackPageview'],['_trackPageLoadTime']];
+        Modernizr.load({
+          load: ('https:' == location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js'
+        });
+        </script>-->
+
+        <!-- Prompt IE 6 users to install Chrome Frame. Remove this if you want to support IE 6.
+           chromium.org/developers/how-tos/chrome-frame-getting-started -->
+        <!--[if lt IE 7 ]>
+        <script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.3/CFInstall.min.js"></script>
+        <script>window.attachEvent('onload',function(){CFInstall.check({mode:'overlay'})})</script>
+        <![endif]-->
+
+    </body>
+</html>
