@@ -21,14 +21,14 @@ find /home/codiad/workspace/$1 -type f -exec sudo chmod 0664 {} +
 # ユーザーごとの実行結果表示用Nginx定義追加
 cat <<EOT > /etc/nginx/users.d/$1
     location ~ ^/$1(/(.+))?$ {
-        root /home/codiad/workspace/$1/public;
+        root /home/codiad/workspace/$1/*** PREVIEW DOC ROOT ***;
 
         try_files \$1 /$1/index.php?\$query_string;
 
         location ~ ^/$1/index.php$ {
             include fastcgi_params;
             # パラメーターをオーバーライト
-            fastcgi_param SCRIPT_FILENAME /home/codiad/workspace/$1/public/index.php;
+            fastcgi_param SCRIPT_FILENAME /home/codiad/workspace/$1/*** PREVIEW DOC ROOT ***/index.php;
             fastcgi_split_path_info ^(.+\\.php)(.+)$;
             fastcgi_pass unix:/var/run/php5-fpm.$1.sock;
             fastcgi_index index.php;
